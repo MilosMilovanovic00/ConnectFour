@@ -1,3 +1,6 @@
+from colorama import Fore
+
+
 class Player(object):
     def __init__(self, id):
         self._id = id
@@ -17,3 +20,6 @@ class Player(object):
             return "Player red"
         else:
             return "Player yellow"
+
+
+
