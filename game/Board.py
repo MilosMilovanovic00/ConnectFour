@@ -1,7 +1,7 @@
 class Board(object):
     def __init__(self):
         self.columns = 7
-        self.rows = 7
+        self.rows = 6
         self.board = [[' ' for i in range(self.columns)] for j in range(self.rows)]
 
     def print_board(self):
@@ -9,7 +9,7 @@ class Board(object):
         print('+')
         for i in range(self.rows):
             for j in range(self.columns):
-                print("| " + self.board[i][j] + " ", end='')
+                print("| " + self.board[i][j], end=' ')
             print('|')
             print("+---" * 7, end='')
             print('+')
@@ -257,8 +257,6 @@ class Board(object):
                     score += 15
         return score
 
-
-
     def count_two_connected(self, player, opponent):
         score = 0
         score += self.vertical_two_eval(opponent, player)
@@ -377,7 +375,7 @@ class Board(object):
                 if self.board[i][j] == self.board[i - 1][j + 1] == player.get_color() and \
                         self.board[i - 2][j + 2] != opponent.get_color():
                     score += 10
-                if self.board[i-2][j+2] == self.board[i - 1][j + 1] == player.get_color() and \
+                if self.board[i - 2][j + 2] == self.board[i - 1][j + 1] == player.get_color() and \
                         self.board[i][j] != opponent.get_color():
                     score += 10
                 if self.board[i][j] == self.board[i - 2][j + 2] == player.get_color() and \
@@ -387,7 +385,7 @@ class Board(object):
                 if self.board[i][j] == self.board[i - 1][j + 1] == player.get_color() and \
                         self.board[i - 2][j + 2] == opponent.get_color():
                     score -= 1
-                if self.board[i-2][j+2] == self.board[i - 1][j + 1] == player.get_color() and \
+                if self.board[i - 2][j + 2] == self.board[i - 1][j + 1] == player.get_color() and \
                         self.board[i][j] == opponent.get_color():
                     score -= 1
                 if self.board[i][j] == self.board[i - 2][j + 2] == player.get_color() and \
@@ -397,7 +395,7 @@ class Board(object):
                 if self.board[i][j] == self.board[i - 1][j + 1] == opponent.get_color() and \
                         self.board[i - 2][j + 2] == player.get_color():
                     score += 5
-                if self.board[i-2][j+2] == self.board[i - 1][j + 1] == opponent.get_color() and \
+                if self.board[i - 2][j + 2] == self.board[i - 1][j + 1] == opponent.get_color() and \
                         self.board[i][j] == player.get_color():
                     score += 5
                 if self.board[i][j] == self.board[i - 2][j + 2] == opponent.get_color() and \

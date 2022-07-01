@@ -7,9 +7,9 @@ class Player(object):
 
     def get_color(self):
         if self._id == 0:
-            return 'R'
+            return Fore.RED+'O'+Fore.WHITE
         else:
-            return 'Y'
+            return Fore.YELLOW+'O'+Fore.WHITE
 
     @property
     def get_id(self):
@@ -20,6 +20,3 @@ class Player(object):
             return "Player red"
         else:
             return "Player yellow"
-
-
-

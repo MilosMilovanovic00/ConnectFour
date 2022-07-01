@@ -11,6 +11,7 @@ class Game(object):
         self.board = Board()
         self.__players = [Player(0), Player(1)]
         self.__current_player = 0
+        self.__game_turn = 0
 
     def game_loop(self):
         valid_keys = ['1', '2', '3', '4', '5', '6', '7']
@@ -21,6 +22,9 @@ class Game(object):
         while not player_won:
             print()
             self.board.print_board()
+            if self.__game_turn == self.board.rows*self.board.columns:
+                print("It's a tie")
+                break
             if self.__current_player == 1:
                 print("AI move")
                 self.board = self.computer_move(4)
@@ -41,10 +45,11 @@ class Game(object):
                     self.board.print_board()
                     print(self.__players[self.__current_player].get_players_name(), "has won!")
                     player_won = True
-            self.change_player()
+                self.change_player()
 
     def change_player(self):
         self.__current_player = (self.__current_player + 1) % 2
+        self.__game_turn += 1
 
     def form_game_tree(self, board, player_id):
         possible_moves = Tree()
@@ -89,30 +94,3 @@ class Game(object):
             if alpha >= beta:
                 return beta
         return alpha
-
-    # minimax(0, 0, true, -INFINITY, +INFINITY) ovako pozivamo
-
-    # def minimax(self, node, depth, isMaximizingPlayer, alpha, beta, player):
-    #     if depth <= 0 or node.data.check_if_player_won(self.__players[player]):
-    #         return node.data.eval_board(self.__players[player],
-    #                                       self.__players[(player + 1) % 2])
-    #     player = (player + 1) % 2
-    #     if isMaximizingPlayer:
-    #         bestVal = -math.inf
-    #         for child in self.form_game_tree(node.data, player).root.children:
-    #             value = self.minimax(child, depth + 1, False, alpha, beta, player)
-    #             bestVal = max(bestVal, value)
-    #             alpha = max(alpha, bestVal)
-    #             if beta <= alpha:
-    #                 break
-    #         return bestVal
-    #
-    #     else:
-    #         bestVal = math.inf
-    #         for child in self.form_game_tree(node.data, player).root.children:
-    #             value = self.minimax(child, depth + 1, True, alpha, beta, player)
-    #             bestVal = min(bestVal, value)
-    #             beta = min(beta, bestVal)
-    #             if beta <= alpha:
-    #                 break
-    #         return bestVal
