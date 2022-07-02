@@ -1,5 +1,6 @@
 import copy
 import math
+import time
 
 from game.Board import Board
 from game.Player import Player
@@ -16,23 +17,26 @@ class Game(object):
     def game_loop(self):
         valid_keys = ['1', '2', '3', '4', '5', '6', '7']
         player_won = False
-        row = -1
-        column = -1
         print("Welcome to the game of connect four")
+        depth = 4
         while not player_won:
-            print()
+            if self.__game_turn == 17:
+                depth += 1
+            if self.__game_turn == 30:
+                depth += 2
+            if self.__game_turn == 33:
+                depth += 3
             self.board.print_board()
-            if self.__game_turn == self.board.rows*self.board.columns:
+            if self.__game_turn == self.board.rows * self.board.columns:
                 print("It's a tie")
                 break
             if self.__current_player == 1:
                 print("AI move")
-                self.board = self.computer_move(4)
+                self.board = self.computer_move(depth)
                 if self.board.check_if_player_won(self.__players[self.__current_player]):
                     self.board.print_board()
-                    print("AI has won!")
+                    print("AI has won!", self.__game_turn)
                     player_won = True
-                self.change_player()
                 continue
             column = input("Choose column you want to place chip: ")
             if column not in valid_keys:
@@ -43,7 +47,7 @@ class Game(object):
                     print("You can't place your chip in a column that's full")
                 if self.board.check_if_player_won(self.__players[self.__current_player]):
                     self.board.print_board()
-                    print(self.__players[self.__current_player].get_players_name(), "has won!")
+                    print(self.__players[self.__current_player].get_players_name(), "has won!", self.__game_turn)
                     player_won = True
                 self.change_player()
 
