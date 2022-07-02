@@ -17,6 +17,9 @@ class Game(object):
     def game_loop(self):
         valid_keys = ['1', '2', '3', '4', '5', '6', '7']
         player_won = False
+        row = -1
+        column = -1
+        ukupno_vreme = 0
         print("Welcome to the game of connect four")
         depth = 4
         while not player_won:
@@ -35,8 +38,9 @@ class Game(object):
                 self.board = self.computer_move(depth)
                 if self.board.check_if_player_won(self.__players[self.__current_player]):
                     self.board.print_board()
-                    print("AI has won!", self.__game_turn)
+                    print("AI has won!")
                     player_won = True
+                self.change_player()
                 continue
             column = input("Choose column you want to place chip: ")
             if column not in valid_keys:
@@ -47,7 +51,7 @@ class Game(object):
                     print("You can't place your chip in a column that's full")
                 if self.board.check_if_player_won(self.__players[self.__current_player]):
                     self.board.print_board()
-                    print(self.__players[self.__current_player].get_players_name(), "has won!", self.__game_turn)
+                    print(self.__players[self.__current_player].get_players_name(), "has won!")
                     player_won = True
                 self.change_player()
 
