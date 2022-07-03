@@ -23,22 +23,26 @@ class Game(object):
         print("Welcome to the game of connect four")
         depth = 4
         while not player_won:
-            if self.__game_turn == 17:
+            if self.__game_turn == 15:
+                depth += 1
+            if self.__game_turn == 23:
                 depth += 1
             if self.__game_turn == 30:
                 depth += 2
-            if self.__game_turn == 33:
-                depth += 3
             self.board.print_board()
             if self.__game_turn == self.board.rows * self.board.columns:
                 print("It's a tie")
                 break
             if self.__current_player == 1:
                 print("AI move")
+                start = time.time()
                 self.board = self.computer_move(depth)
+                end = time.time()
+                ukupno_vreme += end - start
                 if self.board.check_if_player_won(self.__players[self.__current_player]):
                     self.board.print_board()
                     print("AI has won!")
+                    print(ukupno_vreme / (self.__game_turn // 2))
                     player_won = True
                 self.change_player()
                 continue
@@ -52,6 +56,7 @@ class Game(object):
                 if self.board.check_if_player_won(self.__players[self.__current_player]):
                     self.board.print_board()
                     print(self.__players[self.__current_player].get_players_name(), "has won!")
+                    print(ukupno_vreme / (self.__game_turn // 2))
                     player_won = True
                 self.change_player()
 
@@ -90,15 +95,15 @@ class Game(object):
             score = self.maxscore(child, depth - 1, alpha, beta, (player + 1) % 2)
             beta = min(beta, score)
             if alpha >= beta:
-                return alpha
+                break
         return beta
 
     def maxscore(self, child, depth, alpha, beta, player):
         if depth <= 0 or child.data.check_if_player_won(self.__players[player]):
             return child.data.eval_board(self.__players[player], self.__players[(player + 1) % 2])
-        for child in self.form_game_tree(child.data, player).root.children:
+        for child in self.form_game_tree(child.data, (player + 1) % 2).root.children:
             score = self.minscore(child, depth - 1, alpha, beta, (player + 1) % 2)
             alpha = max(alpha, score)
             if alpha >= beta:
-                return beta
+                break
         return alpha

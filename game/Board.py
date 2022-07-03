@@ -73,43 +73,43 @@ class Board(object):
             for j in range(self.columns - 3):
                 if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == player.get_color() and \
                         self.board[i + 3][j + 3] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 3][j + 3] == player.get_color() and \
                         self.board[i + 2][j + 2] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i][j] == self.board[i + 3][j + 3] == self.board[i + 2][j + 2] == player.get_color() and \
                         self.board[i + 1][j + 1] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i + 3][j + 3] == self.board[i + 1][j + 1] == self.board[i + 2][
                     j + 2] == player.get_color() and \
                         self.board[i][j] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == player.get_color() and \
                         self.board[i + 3][j + 3] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 3][j + 3] == player.get_color() and \
                         self.board[i + 2][j + 2] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i + 3][j + 3] == self.board[i + 2][j + 2] == player.get_color() and \
                         self.board[i + 1][j + 1] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i + 3][j + 3] == self.board[i + 1][j + 1] == self.board[i + 2][
                     j + 2] == player.get_color() and \
                         self.board[i][j] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == opponent.get_color() and \
                         self.board[i + 3][j + 3] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 3][j + 3] == opponent.get_color() and \
                         self.board[i + 2][j + 2] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i + 3][j + 3] == self.board[i + 2][j + 2] == opponent.get_color() and \
                         self.board[i + 1][j + 1] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i + 3][j + 3] == self.board[i + 1][j + 1] == self.board[i + 2][
                     j + 2] == opponent.get_color() and \
                         self.board[i][j] == player.get_color():
-                    score += 20
+                    score += 25
         return score
 
     def vertical_eval(self, opponent, player):
@@ -135,35 +135,35 @@ class Board(object):
                 if self.board[i][j] == self.board[i][j + 1] == \
                         self.board[i][j + 2] == player.get_color() and \
                         self.board[i][j + 3] == opponent.get_color():  # R R R C
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i][j + 1] == player.get_color() and \
                         self.board[i][j + 2] == opponent.get_color() and \
                         self.board[i][j + 3] == player.get_color():  # R R C R
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i][j + 2] == player.get_color() and \
                         self.board[i][j + 1] == opponent.get_color() and \
                         self.board[i][j + 3] == player.get_color():  # R C R R
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == opponent.get_color() and self.board[i][j + 2] == player.get_color() and \
                         self.board[i][j + 1] == player.get_color() and \
                         self.board[i][j + 3] == player.get_color():  # C R R R
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i][j + 1] == \
                         self.board[i][j + 2] == opponent.get_color() and \
                         self.board[i][j + 3] == player.get_color():  # C C C R
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i][j + 1] == opponent.get_color() and \
                         self.board[i][j + 2] == player.get_color() and \
                         self.board[i][j + 3] == opponent.get_color():  # C C R C
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i][j + 2] == opponent.get_color() and \
                         self.board[i][j + 1] == player.get_color() and \
                         self.board[i][j + 3] == opponent.get_color():  # C R C C
-                    score += 20
+                    score += 25
                 if self.board[i][j] == player.get_color() and self.board[i][j + 2] == opponent.get_color() and \
                         self.board[i][j + 1] == opponent.get_color() and \
                         self.board[i][j + 3] == opponent.get_color():  # R C C C
-                    score += 20
+                    score += 25
         return score
 
     def horizontal_eval(self, opponent, player):
@@ -185,29 +185,29 @@ class Board(object):
 
                 if self.board[i][j] == self.board[i + 1][j] == self.board[i + 2][j] == player.get_color() and \
                         self.board[i + 3][j] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i + 1][j] == self.board[i + 3][j] == player.get_color() and \
                         self.board[i + 2][j] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i + 2][j] == self.board[i + 3][j] == player.get_color() and \
                         self.board[i + 1][j] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i + 2][j] == self.board[i + 1][j] == self.board[i + 3][j] == player.get_color() and \
                         self.board[i][j] == opponent.get_color():
-                    score += 10
+                    score -= 5
 
                 if self.board[i][j] == self.board[i + 1][j] == self.board[i + 2][j] == opponent.get_color() and \
                         self.board[i + 3][j] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i + 1][j] == self.board[i + 3][j] == opponent.get_color() and \
                         self.board[i + 2][j] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i + 2][j] == self.board[i + 3][j] == opponent.get_color() and \
                         self.board[i + 1][j] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i + 2][j] == self.board[i + 1][j] == self.board[i + 3][j] == opponent.get_color() and \
                         self.board[i][j] == player.get_color():
-                    score += 20
+                    score += 25
 
         return score
 
@@ -217,44 +217,44 @@ class Board(object):
             for i in range(3, self.rows):
                 if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == player.get_color() and \
                         self.board[i - 3][j + 3] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 3][j + 3] == player.get_color() and \
                         self.board[i - 2][j + 2] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i][j] == self.board[i - 3][j + 3] == self.board[i - 2][j + 2] == player.get_color() and \
                         self.board[i - 1][j + 1] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i - 3][j + 3] == self.board[i - 1][j + 1] == self.board[i - 2][
                     j + 2] == player.get_color() and \
                         self.board[i][j] != opponent.get_color():
-                    score += 50
+                    score += 35
                 if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == player.get_color() and \
                         self.board[i - 3][j + 3] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 3][j + 3] == player.get_color() and \
                         self.board[i - 2][j + 2] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i][j] == self.board[i - 3][j + 3] == self.board[i - 2][j + 2] == player.get_color() and \
                         self.board[i - 1][j + 1] == opponent.get_color():
-                    score += 10
+                    score -= 5
                 if self.board[i - 3][j + 3] == self.board[i - 1][j + 1] == self.board[i - 2][
                     j + 2] == player.get_color() and \
                         self.board[i][j] == opponent.get_color():
-                    score += 10
+                    score -= 5
 
                 if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == opponent.get_color() and \
                         self.board[i - 3][j + 3] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 3][j + 3] == opponent.get_color() and \
                         self.board[i - 2][j + 2] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i][j] == self.board[i - 3][j + 3] == self.board[i - 2][j + 2] == opponent.get_color() and \
                         self.board[i - 1][j + 1] == player.get_color():
-                    score += 20
+                    score += 25
                 if self.board[i - 3][j + 3] == self.board[i - 1][j + 1] == self.board[i - 2][
                     j + 2] == opponent.get_color() and \
                         self.board[i][j] == player.get_color():
-                    score += 20
+                    score += 25
         return score
 
     def count_two_connected(self, player, opponent):
